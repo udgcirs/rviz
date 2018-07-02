@@ -159,7 +159,7 @@ else()
   set(EIGEN3_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIR})
 endif()
 
-find_package(TinyXML2 REQUIRED)
+find_package(TinyXML REQUIRED)
 
 catkin_python_setup()
 
@@ -213,7 +213,7 @@ include_directories(SYSTEM
   ${OGRE_OV_INCLUDE_DIRS}
   ${OPENGL_INCLUDE_DIR}
   ${PYTHON_INCLUDE_PATH}
-  ${TinyXML2_INCLUDE_DIRS}
+  ${TinyXML_INCLUDE_DIRS}
   ${urdfdom_headers_INCLUDE_DIRS}
 )
 include_directories(src ${catkin_INCLUDE_DIRS})

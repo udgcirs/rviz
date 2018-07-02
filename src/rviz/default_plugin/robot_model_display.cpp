@@ -30,7 +30,7 @@
 #include <OgreSceneNode.h>
 #include <OgreSceneManager.h>
 
-#include <tinyxml2.h>
+#include <tinyxml.h>
 #include <urdf/model.h>
 
 #include "rviz/display_context.h"
@@ -172,7 +172,7 @@ void RobotModelDisplay::load()
 
   robot_description_ = content;
 
-  tinyxml2::XMLDocument doc;
+  TiXmlDocument doc;
   doc.Parse( robot_description_.c_str() );
   if( !doc.RootElement() )
   {
