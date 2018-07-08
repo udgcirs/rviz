@@ -117,6 +117,7 @@ void RobotLinkSelectionHandler::createProperties( const Picked& obj, Property* p
 void RobotLinkSelectionHandler::updateProperties()
 {
   position_property_->setVector( link_->getPosition() );
+      ROS_ERROR("Updating properties for link %s, position: %f, %f, %f", link_->name_.c_str(), position_property_->getVector().x, position_property_->getVector().y, position_property_->getVector().z);
   orientation_property_->setQuaternion( link_->getOrientation() );
 }
 
@@ -532,6 +533,8 @@ void RobotLink::createEntityForGeometryElement(const urdf::LinkConstSharedPtr& l
   std::stringstream ss;
   ss << "Robot Link" << count++;
   std::string entity_name = ss.str();
+  ROS_ERROR("createEntityForGeometryElement: Entity: %s; origin: %f, %f, %f",
+    entity_name.c_str(), origin.position.x, origin.position.y, origin.position.z);
 
   Ogre::Vector3 scale(Ogre::Vector3::UNIT_SCALE);
 
@@ -617,6 +620,8 @@ void RobotLink::createEntityForGeometryElement(const urdf::LinkConstSharedPtr& l
   {
     offset_node->attachObject(entity);
     offset_node->setScale(scale);
+    ROS_ERROR("createEntityForGeometryElement: offset position: %f, %f, %f",
+      offset_position.x, offset_position.y, offset_position.z);
     offset_node->setPosition(offset_position);
     offset_node->setOrientation(offset_orientation);
 
@@ -844,6 +849,7 @@ void RobotLink::updateAxes()
       axes_->getSceneNode()->setVisible( getEnabled() );
 
       axes_->setPosition( position_property_->getVector() );
+      ROS_ERROR("Setting axes position for link %s: %f, %f, %f", name_.c_str(), position_property_->getVector().x, position_property_->getVector().y, position_property_->getVector().z);
       axes_->setOrientation( orientation_property_->getQuaternion() );
     }
   }
@@ -873,6 +879,7 @@ void RobotLink::setTransforms( const Ogre::Vector3& visual_position, const Ogre:
   }
 
   position_property_->setVector( visual_position );
+      //ROS_ERROR("Setting transform position for link %s: %f, %f, %f", name_.c_str(), position_property_->getVector().x, position_property_->getVector().y, position_property_->getVector().z);
   orientation_property_->setQuaternion( visual_orientation );
 
   if ( axes_ )
