@@ -7,6 +7,7 @@ set(SOURCE_FILES
   covariance_property.cpp
   depth_cloud_display.cpp
   depth_cloud_mld.cpp
+  dvl_display.cpp
   effort_display.cpp
   effort_visual.cpp
   fluid_pressure_display.cpp
